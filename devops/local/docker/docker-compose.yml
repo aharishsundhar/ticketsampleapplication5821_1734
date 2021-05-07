@@ -1,0 +1,112 @@
+version: "3.8"
+services:
+  mongo:
+    image: geppettotest/mongo-local:april2020
+    container_name: mongo-1734
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - ticketsampleapplication5821_1734-volume:/data/db
+    ports:
+      - "27018:27017"
+    healthcheck:
+      test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u root -p root --quiet | grep 1
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  camunda:
+    image: geppettodistribution/camunda-local:Jan2021
+    container_name: camunda-1734
+    ports:
+      - "0000:8080"
+
+  authproxy:
+    build: ../../../application/services/default_services/authproxy
+    image: authproxy-1734
+    container_name: authproxy-1734
+    ports:
+      - "0000:8001"
+    env_file: .env
+    depends_on:
+      - mongo
+      - camunda
+
+  securitymanager:
+    build: ../../../application/services/default_services/securitymanager
+    image: securitymanager-1734
+    container_name: securitymanager-1734
+    ports:
+      - "8003:8003"
+    env_file: .env
+    depends_on:
+      - mongo
+      - camunda
+
+  camundaservice:
+    build: ../../../application/services/default_services/camunda
+    image: camundaservice-1734
+    container_name: camundasvc-1734
+    ports:
+      - "8002:8002"
+    env_file: .env
+    depends_on:
+      - mongo
+      - camunda
+      - securitymanager
+
+  apigateway:
+    build: ../../../application/services/custom_services/apigateway
+    image: apigateway-1734
+    container_name: apigateway-1734
+    ports:
+      - "8000:8000"
+    env_file: .env
+    depends_on:
+      - camunda
+      - camundaservice
+      - authproxy
+      - securitymanager
+      - ticketsample
+      - typessample
+      - severitysample
+
+
+
+  ticketsample: 
+    build: ../../../application/services/custom_services/ticketsample
+    image: ticketsample-1734
+    container_name: ticketsample-1734
+    ports: 
+      - 8023:8023
+    env_file: .env
+    depends_on:
+      - mongo
+
+  typessample: 
+    build: ../../../application/services/custom_services/typessample
+    image: typessample-1734
+    container_name: typessample-1734
+    ports: 
+      - 8024:8024
+    env_file: .env
+    depends_on:
+      - mongo
+
+  severitysample: 
+    build: ../../../application/services/custom_services/severitysample
+    image: severitysample-1734
+    container_name: severitysample-1734
+    ports: 
+      - 8025:8025
+    env_file: .env
+    depends_on:
+      - mongo
+
+
+volumes:
+  ticketsampleapplication5821_1734-volume:
+    driver: local

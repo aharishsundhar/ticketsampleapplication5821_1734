@@ -1,0 +1,164 @@
+---
+openapi: 3.0.0
+info:
+   version: 1.3.0
+   title: ticketsampleapplication5821 open api specification
+   description: ticketsample API
+   termsOfService: http://api_url/terms/
+   contact:
+      name: ContactName
+      email: hello@wolox.co
+      url: https://www.wolox.com.ar/
+   license:
+      name: Apache 2.0
+      url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+   - url: http://localhost:8023
+     description: ticketsample
+tags:
+- name: ticketsample
+paths:
+   "/ticketsample/{id}":
+      delete:
+         tags:
+         -  ticketsample
+         description: GpDelete
+         parameters:
+         -  in: "path"
+            description: GpDelete
+            name: id
+            required: true
+            schema:
+               type: "string"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+      get:
+         tags:
+         -  ticketsample
+         description: GpGetNounById
+         parameters:
+         -  in: "path"
+            description: GpGetNounById
+            name: id
+            required: true
+            schema:
+               type: "string"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+   "/ticketsample/get/search":
+      get:
+         tags:
+         -  ticketsample
+         description: GpSearch
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+   "/ticketsample":
+      put:
+         tags:
+         -  ticketsample
+         description: GpUpdate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/ticketsample"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+      get:
+         tags:
+         -  ticketsample
+         description: GpGetAllValues
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+      post:
+         tags:
+         -  ticketsample
+         description: GpCreate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/ticketsample"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+   "/ticketsample/get/update":
+      put:
+         tags:
+         -  ticketsample
+         description: GpSearchForUpdate
+         requestBody:
+            content:
+               application/json:
+                  schema:
+                     $ref: "#/components/schemas/ticketsample"
+         responses:
+            200:
+               description: Success
+            400:
+               description: Bad Request
+            404:
+               description: Not Found
+            500:
+               description: Internal Server Error
+components:
+   schemas:
+      ticketsample:
+         type: object
+         properties:
+            name:
+               type: "string"
+               description: Description
+            groups:
+               type: "string"
+               description: Description
+            description:
+               type: "string"
+               description: Description
+            types:
+               type: "string"
+               description: Description
+            severity:
+               type: "string"
+               description: Description

@@ -1,0 +1,40 @@
+<h2 class="screen-align">Addedticket</h2>
+<div id="template-i1fm" class="row">
+    <div id="template-i6cx" class="cell">
+        <label id="template-iqkn" class="label">name</label>
+        <input id="template-i9fz7" [(ngModel)]="ticketsample.name"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+    <div id="template-il5x" class="cell">
+        <label id="template-invah" class="label">description</label>
+        <input id="template-i2okk" [(ngModel)]="ticketsample.description"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+    <div id="template-imsq" class="cell">
+        <label id="template-iwexi" class="label">groups</label>
+        <input id="template-i0w64" [(ngModel)]="ticketsample.groups"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+</div>
+<div id="template-ifqv" class="row">
+    <div id="template-igsl" class="cell">
+        <label id="template-iuwa6" class="label">types</label>
+        <div id="template-i1tr4" class="">
+            <ng-select id="template-iyfef" name="dynamicdropdown_template-iyfef" [searchable]="true"
+            [virtualScroll]="true" [items]="typesampleitemArray" bindLabel="name" bindValue="name"
+            [(ngModel)]="ticketsample.types" [ngModelOptions]="{standalone: true}"
+            (click)="typesampleGpGetAllValues()" class="form-control"></ng-select>
+        </div>
+        <button id="template-ixx5u" (click)="GpCreate()" class="button btn btn-primary">create</button>
+    </div>
+    <div id="template-i6l7" class="cell">
+        <label id="template-i1f9w" class="label">severity</label>
+        <div id="template-ivjpn" class="">
+            <ng-select id="template-i2n9l" name="dynamicdropdown_template-i2n9l" [searchable]="true"
+            [virtualScroll]="true" [items]="severitysampleitemArray" bindLabel="name"
+            bindValue="name" [(ngModel)]="ticketsample.severity" [ngModelOptions]="{standalone: true}"
+            (click)="severitysampleGpGetAllValues()" class="form-control"></ng-select>
+        </div>
+    </div>
+    <div id="template-iaxz" class="cell"></div>
+</div>

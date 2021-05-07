@@ -1,0 +1,41 @@
+<h2 class="screen-align">Modifydeleteticket</h2>
+<div id="template-i7fw" class="row">
+    <div id="template-imeo" class="cell">
+        <label id="template-iltf" class="label">name</label>
+        <input id="template-iu17o" [(ngModel)]="ticketsample.name"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+    <div id="template-ige9" class="cell">
+        <label id="template-isaul" class="label">description</label>
+        <input id="template-ibuow" [(ngModel)]="ticketsample.description"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+    <div id="template-ido4" class="cell">
+        <label id="template-inare" class="label">groups</label>
+        <input id="template-imbfg" [(ngModel)]="ticketsample.groups"
+        [ngModelOptions]="{standalone: true}" class="input form-control" />
+    </div>
+</div>
+<div id="template-ix3z" class="row">
+    <div id="template-ictk" class="cell">
+        <label id="template-id4cu" class="label">types</label>
+        <div id="template-i9yjr" class="">
+            <ng-select id="template-it0fn" name="dynamicdropdown_template-it0fn" [searchable]="true"
+            [virtualScroll]="true" [items]="typesampleitemArray" bindLabel="name" bindValue="name"
+            [(ngModel)]="ticketsample.types" [ngModelOptions]="{standalone: true}"
+            (click)="typesampleGpGetAllValues()" class="form-control"></ng-select>
+        </div>
+        <button id="template-ispnf" (click)="GpUpdate()" class="button btn btn-primary">update</button>
+        <button id="template-ioneh" (click)="GpDelete()" class="button btn btn-primary">delete</button>
+    </div>
+    <div id="template-imlg" class="cell">
+        <label id="template-ist9y" class="label">severity</label>
+        <div id="template-i1abd" class="">
+            <ng-select id="template-iv5lj" name="dynamicdropdown_template-iv5lj" [searchable]="true"
+            [virtualScroll]="true" [items]="severitysampleitemArray" bindLabel="name"
+            bindValue="name" [(ngModel)]="ticketsample.severity" [ngModelOptions]="{standalone: true}"
+            (click)="severitysampleGpGetAllValues()" class="form-control"></ng-select>
+        </div>
+    </div>
+    <div id="template-ibq3" class="cell"></div>
+</div>
